@@ -1,0 +1,54 @@
+//
+//   Copyright 2019  SenX S.A.S.
+//
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
+//
+
+{
+  'name' 'KERASLOAD'
+  'since' '1.0.0'
+  'deprecated' ''
+  'deleted' ''
+  'version' 'all'
+  'tags' [ 'extensions' ]
+  'desc' 
+    <'
+The `KERASLOAD` function loads a [Keras](https://keras.io/) model saved as [HDF5](https://en.wikipedia.org/wiki/Hierarchical_Data_Format) using the `save` function and pushes onto the stack a model evaluator which can later be used by `KERASEVAL`.
+
+The model is parsed from a byte array pushed onto the stack or from a file located under the directory configured via `keras.modelroot` or the classpath if `keras.useclasspath` is set to `true`. To load a model from a file, the parameter must be a TRING with a leading `@`, i.e. `@file.h5`.
+
+This extension makes use of the [DeepLearning4J](https://deeplearning4j.org/) library for handling Keras models, as such some features of Keras are not yet supported, see the [supported features](https://deeplearning4j.org/docs/latest/keras-import-supported-features).
+    '>
+  'sig' [
+    [ [ 'modelfile:STRING' ]  [ 'evaluator:KERASEVALUATOR' ] ]
+    [ [ 'modelbytes:STRING' ]  [ 'evaluator:KERASEVALUATOR' ] ]
+  ]
+  'params' {
+    'modelfile' 'Path to the HDF5 definition of the model to load as `@file.h5`.'
+    'evaluator' 'Keras evaluator for the given model.'
+    'modelbytes' 'Byte array containing an HDF5 model definition.'
+  }
+  'related' [ 'KERASEVAL' ]
+  'examples' [ 
+  ]
+  'conf' [ 'warpscript.extensions' 'keras.modelroot' 'keras.useclasspath' ]
+  'ext' 'io.warp10.script.ext.keras.KerasWarpScriptExtension'
+} 'info' STORE
+<%
+  !$info INFO
+  <%  'KERASLOAD' EVAL %>
+  <% %> <% %> TRY
+%>
+'macro' STORE
+// Unit tests
+$macro
