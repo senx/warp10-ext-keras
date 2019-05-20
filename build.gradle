@@ -109,6 +109,8 @@ dependencies {
   // Insert your dependencies here
   //
   //compile group: 'GROUP', name: 'NAME', version: 'VERSION'
+  compile 'org.deeplearning4j:deeplearning4j-modelimport:1.0.0-beta4'
+  compile 'org.nd4j:nd4j-native-platform:1.0.0-beta4'
 
   testCompile'io.warp10:warpscript:+'
   testImplementation 'junit:junit:4.12'
